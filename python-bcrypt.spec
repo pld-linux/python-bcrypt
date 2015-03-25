@@ -10,7 +10,7 @@ Summary:	Library for password hashing for your software and your servers
 Summary(pl.UTF-8):	Biblioteka do tworzenia skrótów haseł dla twojego oprogramowania i serwerów
 Name:		python-%{module}
 Version:	1.1.1
-Release:	1
+Release:	2
 License:	Apache v2.0
 Group:		Libraries/Python
 Source0:	https://pypi.python.org/packages/source/b/bcrypt/%{module}-%{version}.tar.gz
@@ -22,16 +22,20 @@ BuildRequires:	rpmbuild(macros) >= 1.219
 %if %{with python2}
 BuildRequires:	python-devel
 BuildRequires:	python-distribute
+BuildRequires:	python-py
+BuildRequires:	python-pytest
 %endif
 %if %{with python3}
 BuildRequires:	python3-devel
 BuildRequires:	python3-distribute
 BuildRequires:	python3-modules
+BuildRequires:	python3-py
+BuildRequires:	python3-pytest
 %endif
 # Below Rs only work for main package (python2)
+Requires:	python-cffi > 8.0
 #Requires:		python-libs
 Requires:	python-modules
-Requires:	python-cffi > 8.0
 
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -47,8 +51,8 @@ Python 2.6, 2.7, 3.2, 3.3 and PyPy 2.0
 Summary:	Library for password hashing for your software and your servers
 Summary(pl.UTF-8):	Biblioteka do tworzenia skrótów haseł dla twojego oprogramowania i serwerów
 Group:		Libraries/Python
-Requires:	python3-modules
 Requires:	python3-cffi > 0.8
+Requires:	python3-modules
 
 %description -n python3-%{module}
 This library should be compatible with py-bcrypt and it will run on
