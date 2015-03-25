@@ -20,23 +20,25 @@ BuildRequires:	rpm-pythonprov
 # if py_postclean is used
 BuildRequires:	rpmbuild(macros) >= 1.219
 %if %{with python2}
+BuildRequires:	python-cffi
+BuildRequires:	python-d2to1
 BuildRequires:	python-devel
 BuildRequires:	python-distribute
 BuildRequires:	python-py
 BuildRequires:	python-pytest
+BuildRequires:	python-six
 %endif
 %if %{with python3}
+BuildRequires:	python3-cffi
 BuildRequires:	python3-devel
 BuildRequires:	python3-distribute
 BuildRequires:	python3-modules
 BuildRequires:	python3-py
 BuildRequires:	python3-pytest
+BuildRequires:	python3-six
 %endif
-# Below Rs only work for main package (python2)
 Requires:	python-cffi > 8.0
-#Requires:		python-libs
 Requires:	python-modules
-
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -104,9 +106,9 @@ rm -rf $RPM_BUILD_ROOT
 	install --skip-build \
 	--optimize=2 \
 	--root=$RPM_BUILD_ROOT
+
 # Deleting crypt_blowfish-1.3 source files installed
-%{__rm} $RPM_BUILD_ROOT/%{py_sitedir}/%{module}/crypt_blowfish-1.3/*
-%{__rmdir} $RPM_BUILD_ROOT/%{py_sitedir}/%{module}/crypt_blowfish-1.3/
+%{__rm} $RPM_BUILD_ROOT%{py_sitedir}/%{module}/crypt_blowfish-1.3
 %py_postclean
 
 %endif
@@ -117,21 +119,9 @@ rm -rf $RPM_BUILD_ROOT
 	install --skip-build \
 	--optimize=2 \
 	--root=$RPM_BUILD_ROOT
-# Deleting crypt_blowfish-1.3 source files installed
-%{__rm} $RPM_BUILD_ROOT/%{py3_sitedir}/%{module}/crypt_blowfish-1.3/*
-%{__rmdir} $RPM_BUILD_ROOT/%{py3_sitedir}/%{module}/crypt_blowfish-1.3/
-%endif
 
-# in case there are examples provided
-%if %{with python2}
-# install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
-# cp -a examples/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
-%endif
-%if %{with python3}
-# install -d $RPM_BUILD_ROOT%{_examplesdir}/python3-%{module}-%{version}
-# cp -a examples/* $RPM_BUILD_ROOT%{_examplesdir}/python3-%{module}-%{version}
-# find $RPM_BUILD_ROOT%{_examplesdir}/python3-%{module}-%{version} -name '*.py' \
-# 	| xargs sed -i '1s|^#!.*python\b|#!%{__python3}|'
+# Deleting crypt_blowfish-1.3 source files installed
+%{__rm} $RPM_BUILD_ROOT%{py3_sitedir}/%{module}/crypt_blowfish-1.3
 %endif
 
 %clean
