@@ -24,6 +24,7 @@ BuildRequires:	python-cffi
 BuildRequires:	python-d2to1
 BuildRequires:	python-devel
 BuildRequires:	python-distribute
+BuildRequires:	python-modules
 BuildRequires:	python-py
 BuildRequires:	python-pytest
 BuildRequires:	python-six
@@ -31,6 +32,7 @@ BuildRequires:	python-six
 %if %{with python3}
 BuildRequires:	python3-cffi
 BuildRequires:	python3-devel
+BuildRequires:	python3-devel-tools
 BuildRequires:	python3-distribute
 BuildRequires:	python3-modules
 BuildRequires:	python3-py
@@ -108,7 +110,7 @@ rm -rf $RPM_BUILD_ROOT
 	--root=$RPM_BUILD_ROOT
 
 # Deleting crypt_blowfish-1.3 source files installed
-%{__rm} $RPM_BUILD_ROOT%{py_sitedir}/%{module}/crypt_blowfish-1.3
+%{__rm} -r $RPM_BUILD_ROOT%{py_sitedir}/%{module}/crypt_blowfish-1.3
 %py_postclean
 
 %endif
@@ -121,7 +123,7 @@ rm -rf $RPM_BUILD_ROOT
 	--root=$RPM_BUILD_ROOT
 
 # Deleting crypt_blowfish-1.3 source files installed
-%{__rm} $RPM_BUILD_ROOT%{py3_sitedir}/%{module}/crypt_blowfish-1.3
+%{__rm} -r $RPM_BUILD_ROOT%{py3_sitedir}/%{module}/crypt_blowfish-1.3
 %endif
 
 %clean
