@@ -5,12 +5,12 @@
 %bcond_without	python2 # CPython 2.x module
 %bcond_without	python3 # CPython 3.x module
 
-%define 	module	bcrypt
+%define		module	bcrypt
 Summary:	Library for password hashing for your software and your servers
 Summary(pl.UTF-8):	Biblioteka do tworzenia skrótów haseł dla twojego oprogramowania i serwerów
 Name:		python-%{module}
 Version:	1.1.1
-Release:	2
+Release:	3
 License:	Apache v2.0
 Group:		Libraries/Python
 Source0:	https://pypi.python.org/packages/source/b/bcrypt/%{module}-%{version}.tar.gz
@@ -39,7 +39,7 @@ BuildRequires:	python3-py
 BuildRequires:	python3-pytest
 BuildRequires:	python3-six
 %endif
-Requires:	python-cffi > 8.0
+Requires:	python-cffi > 0.8
 Requires:	python-modules
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
