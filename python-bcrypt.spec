@@ -84,13 +84,13 @@ Dokumentacja API %{module}.
 %if %{with python2}
 CC="%{__cc}" \
 CFLAGS="%{rpmcppflags} %{rpmcflags}" \
-%{__python} setup.py build --build-base build-2 %{?with_tests:test}
+%py_build %{?with_tests:test}
 %endif
 
 %if %{with python3}
 CC="%{__cc}" \
 CFLAGS="%{rpmcppflags} %{rpmcflags}" \
-%{__python3} setup.py build --build-base build-3 %{?with_tests:test}
+%py3_build %{?with_tests:test}
 %endif
 
 %if %{with doc}
@@ -103,11 +103,7 @@ rm -rf _build/html/_sources
 rm -rf $RPM_BUILD_ROOT
 
 %if %{with python2}
-%{__python} setup.py \
-	build --build-base build-2 \
-	install --skip-build \
-	--optimize=2 \
-	--root=$RPM_BUILD_ROOT
+%py_install
 
 # Deleting crypt_blowfish-1.3 source files installed
 %{__rm} -r $RPM_BUILD_ROOT%{py_sitedir}/%{module}/crypt_blowfish-1.3
@@ -116,11 +112,7 @@ rm -rf $RPM_BUILD_ROOT
 %endif
 
 %if %{with python3}
-%{__python3} setup.py \
-	build --build-base build-3 \
-	install --skip-build \
-	--optimize=2 \
-	--root=$RPM_BUILD_ROOT
+%py3_install
 
 # Deleting crypt_blowfish-1.3 source files installed
 %{__rm} -r $RPM_BUILD_ROOT%{py3_sitedir}/%{module}/crypt_blowfish-1.3
