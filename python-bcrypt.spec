@@ -18,7 +18,7 @@ Source0:	https://pypi.python.org/packages/source/b/bcrypt/%{module}-%{version}.t
 URL:		https://github.com/dstufft/bcrypt/
 BuildRequires:	rpm-pythonprov
 # if py_postclean is used
-BuildRequires:	rpmbuild(macros) >= 1.219
+BuildRequires:	rpmbuild(macros) >= 1.710
 %if %{with python2}
 BuildRequires:	python-cffi
 BuildRequires:	python-d2to1
