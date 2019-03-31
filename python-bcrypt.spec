@@ -9,13 +9,12 @@
 Summary:	Library for password hashing for your software and your servers
 Summary(pl.UTF-8):	Biblioteka do tworzenia skrótów haseł dla twojego oprogramowania i serwerów
 Name:		python-%{module}
-Version:	1.1.1
-Release:	10
+Version:	3.1.6
+Release:	1
 License:	Apache v2.0
 Group:		Libraries/Python
 Source0:	https://pypi.debian.net/bcrypt/%{module}-%{version}.tar.gz
-# Source0-md5:	43c5871c6bc7da1efe6a8bae25f90ad8
-Patch0:		build.patch
+# Source0-md5:	4d8ab82e5e0c86b15f4ba5aff2bec6b5
 URL:		https://github.com/dstufft/bcrypt/
 BuildRequires:	rpm-pythonprov
 # if py_postclean is used
@@ -80,7 +79,6 @@ Dokumentacja API %{module}.
 
 %prep
 %setup -q -n %{module}-%{version}
-%patch0 -p1
 
 %build
 %if %{with python2}
@@ -107,8 +105,6 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with python2}
 %py_install
 
-# Deleting crypt_blowfish-1.3 source files installed
-%{__rm} -r $RPM_BUILD_ROOT%{py_sitedir}/%{module}/crypt_blowfish-1.3
 %py_postclean
 
 %endif
@@ -116,8 +112,6 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with python3}
 %py3_install
 
-# Deleting crypt_blowfish-1.3 source files installed
-%{__rm} -r $RPM_BUILD_ROOT%{py3_sitedir}/%{module}/crypt_blowfish-1.3
 %endif
 
 %clean
@@ -128,8 +122,8 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc README.rst
 %dir %{py_sitedir}/%{module}
+%attr(755,root,root) %{py_sitedir}/bcrypt/*.so
 %{py_sitedir}/%{module}/*.py[co]
-%attr(755,root,root) %{py_sitedir}/*.so
 %if "%{py_ver}" > "2.4"
 %{py_sitedir}/%{module}-%{version}-py*.egg-info
 %endif
@@ -139,8 +133,11 @@ rm -rf $RPM_BUILD_ROOT
 %files -n python3-%{module}
 %defattr(644,root,root,755)
 %doc README.rst
-%attr(755,root,root) %{py3_sitedir}/*.so
-%{py3_sitedir}/%{module}
+%dir %{py3_sitedir}/%{module}
+%attr(755,root,root) %{py3_sitedir}/bcrypt/*.so
+%{py3_sitedir}/%{module}/*.py
+%dir %{py3_sitedir}/%{module}/__pycache__
+%{py3_sitedir}/%{module}/__pycache__/*.py[co]
 %{py3_sitedir}/%{module}-%{version}-py*.egg-info
 %endif
 
