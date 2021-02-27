@@ -9,7 +9,7 @@ Summary:	Library for password hashing for your software and your servers
 Summary(pl.UTF-8):	Biblioteka do tworzenia skrótów haseł dla programów i serwerów
 Name:		python-%{module}
 Version:	3.1.7
-Release:	1
+Release:	2
 License:	Apache v2.0
 Group:		Libraries/Python
 #Source0Download: https://pypi.org/simple/bcrypt/
