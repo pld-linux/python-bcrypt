@@ -8,6 +8,7 @@
 Summary:	Library for password hashing for your software and your servers
 Summary(pl.UTF-8):	Biblioteka do tworzenia skrótów haseł dla programów i serwerów
 Name:		python-%{module}
+# keep 3.1.x for python2 support
 Version:	3.1.7
 Release:	6
 License:	Apache v2.0
