@@ -63,11 +63,23 @@ Biblioteka powinna być zgodna z biblioteką py-bcrypt.
 
 %build
 %if %{with python2}
-%py_build %{?with_tests:test}
+%py_build
+
+%if %{with tests}
+PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 \
+PYTHONPATH=$(echo $(pwd)/build-2/lib.linux-*) \
+%{__python} -m pytest tests
+%endif
 %endif
 
 %if %{with python3}
-%py3_build %{?with_tests:test}
+%py3_build
+
+%if %{with tests}
+PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 \
+PYTHONPATH=$(echo $(pwd)/build-3/lib.linux-*) \
+%{__python3} -m pytest tests
+%endif
 %endif
 
 %install
