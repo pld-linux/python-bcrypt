@@ -10,7 +10,7 @@ Summary(pl.UTF-8):	Biblioteka do tworzenia skrótów haseł dla programów i ser
 Name:		python-%{module}
 # keep 3.1.x for python2 support
 Version:	3.1.7
-Release:	7
+Release:	8
 License:	Apache v2.0
 Group:		Libraries/Python
 #Source0Download: https://pypi.org/simple/bcrypt/
