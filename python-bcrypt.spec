@@ -2,7 +2,7 @@
 # Conditional build:
 %bcond_without	tests	# unit tests
 %bcond_without	python2 # CPython 2.x module
-%bcond_without	python3 # CPython 3.x module
+%bcond_with	python3 # CPython 3.x module (built from python3-bcrypt.spec)
 
 %define		module	bcrypt
 Summary:	Library for password hashing for your software and your servers
@@ -10,7 +10,7 @@ Summary(pl.UTF-8):	Biblioteka do tworzenia skrótów haseł dla programów i ser
 Name:		python-%{module}
 # keep 3.1.x for python2 support
 Version:	3.1.7
-Release:	8
+Release:	9
 License:	Apache v2.0
 Group:		Libraries/Python
 #Source0Download: https://pypi.org/simple/bcrypt/
